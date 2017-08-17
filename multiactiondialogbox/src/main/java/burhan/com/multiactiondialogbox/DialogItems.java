@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by burha on 16-08-2017.
+ * Created by burhan on 16-08-2017.
  */
 
 public class DialogItems
