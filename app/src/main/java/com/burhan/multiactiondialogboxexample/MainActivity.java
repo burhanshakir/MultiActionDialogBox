@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view)
             {
                 multiActionDialog.show(MainActivity.this);
-
             }
         });
     }

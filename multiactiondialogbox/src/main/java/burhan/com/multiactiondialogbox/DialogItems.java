@@ -13,6 +13,11 @@ public class DialogItems
 {
     List<DialogItem> dialogItems = new ArrayList<>();
 
+    public List<DialogItem> getDialogItems()
+    {
+        return dialogItems;
+    }
+
     public void add(int id, String title, Drawable icon)
     {
 
@@ -25,4 +30,6 @@ public class DialogItems
         dialogItems.add(item);
 
     }
+
+
 }
