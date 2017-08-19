@@ -24,10 +24,9 @@ public class MainActivity extends AppCompatActivity
 
         DialogItems items = new DialogItems();
 
-        items.add(1,"Football", ContextCompat.getDrawable(this,android.R.drawable.btn_plus));
-        items.add(2,"Cricket", ContextCompat.getDrawable(this,android.R.drawable.btn_plus));
-        items.add(3,"Badminton", ContextCompat.getDrawable(this,android.R.drawable.btn_plus));
-        items.add(4,"Tennis", ContextCompat.getDrawable(this,android.R.drawable.btn_plus));
+        items.add(1,"Football", ContextCompat.getDrawable(this,R.drawable.calender));
+        items.add(3,"Badminton", ContextCompat.getDrawable(this,R.drawable.card));
+        items.add(4,"Tennis", ContextCompat.getDrawable(this,R.drawable.clock));
 
         final MultiActionDialog multiActionDialog = new MultiActionDialog();
         multiActionDialog.initialise(items, MultiActionDialog.HORIZONTAL_ORIENTATION, button);

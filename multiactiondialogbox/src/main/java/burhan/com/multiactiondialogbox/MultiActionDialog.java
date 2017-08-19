@@ -2,12 +2,16 @@ package burhan.com.multiactiondialogbox;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+
+import java.util.List;
 
 /**
  * Created by burhan on 16-08-2017.
@@ -21,9 +25,8 @@ public class MultiActionDialog extends PopupWindow
     private DialogItems items;
     private int orientation;
     private View attachableView;
-    CardView background;
-    Activity mContext;
-    LinearLayout dialogLayout;
+    private Activity mContext;
+    private LinearLayout dialogLayout;
 
 
     public void initialise(DialogItems items, int orientation, View attachableView)
@@ -37,7 +40,7 @@ public class MultiActionDialog extends PopupWindow
     {
         mContext = context;
 
-        background = (CardView) mContext.findViewById(R.id.cvDialog);
+        CardView background = (CardView) mContext.findViewById(R.id.cvDialog);
 
         LayoutInflater layoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -56,6 +59,8 @@ public class MultiActionDialog extends PopupWindow
     private void setUpButtons()
     {
 
+        List<DialogItem> dialogItems = items.getDialogItems();
+
         if(orientation == HORIZONTAL_ORIENTATION)
         {
             dialogLayout.setOrientation(LinearLayout.HORIZONTAL);
@@ -65,16 +70,61 @@ public class MultiActionDialog extends PopupWindow
             dialogLayout.setOrientation(LinearLayout.VERTICAL);
         }
 
-//        background.addView(dialogLayout);
         int i;
 
-        for(i = 0; i< items.getDialogItems().size(); i++ )
+        for(i = 0; i< dialogItems.size(); i++ )
         {
+            DialogItem item = dialogItems.get(i);
+
+            LinearLayout itemLayout = new LinearLayout(mContext);
+            itemLayout.setLayoutParams(new LinearLayout.LayoutParams
+                    (LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            itemLayout.setId(item.getId());
+
+            if(orientation == HORIZONTAL_ORIENTATION)
+            {
+                itemLayout.setOrientation(LinearLayout.VERTICAL);
+            }
+            else
+            {
+                itemLayout.setOrientation(LinearLayout.HORIZONTAL);
+            }
+
+            ImageView iv = new ImageView(mContext);
+            iv.setImageDrawable(item.getIcon());
+
             TextView tv = new TextView(mContext);
+            tv.setText(item.getTitle());
 
-            tv.setText(items.getDialogItems().get(i).getTitle());
 
-            dialogLayout.addView(tv);
+            itemLayout.addView(iv);
+            itemLayout.addView(tv);
+
+            dialogLayout.addView(itemLayout);
+
+            if(i != dialogItems.size() -1)
+            {
+                View divider = new View(mContext);
+
+                if(orientation == HORIZONTAL_ORIENTATION)
+                {
+                    divider.setLayoutParams
+                            (new LinearLayout.LayoutParams(
+                                    (int) mContext.getResources().getDimension(R.dimen.divider_width),LinearLayout.LayoutParams.MATCH_PARENT));
+                }
+                else
+                {
+                    divider.setLayoutParams
+                            (new LinearLayout.LayoutParams
+                                    (LinearLayout.LayoutParams.MATCH_PARENT, (int) mContext.getResources().getDimension(R.dimen.divider_width)));
+                }
+
+                divider.setBackgroundColor(ContextCompat.getColor(mContext, R.color.divider_color));
+
+                dialogLayout.addView(divider);
+            }
+
+
         }
     }
 
