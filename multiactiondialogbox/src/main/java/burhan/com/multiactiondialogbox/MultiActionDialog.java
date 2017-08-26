@@ -114,15 +114,18 @@ public class MultiActionDialog extends PopupWindow
                     dividerParams = new LinearLayout.LayoutParams(
                             (int) mContext.getResources().getDimension(R.dimen.divider_width),LinearLayout.LayoutParams.MATCH_PARENT);
 
+                    dividerParams.setMargins((int) mContext.getResources().getDimension(R.dimen.divider_margin),0,(int) mContext.getResources().getDimension(R.dimen.divider_margin),0);
+
                 }
                 else
                 {
                     dividerParams = new LinearLayout.LayoutParams
                             (LinearLayout.LayoutParams.MATCH_PARENT, (int) mContext.getResources().getDimension(R.dimen.divider_width));
+
+                    dividerParams.setMargins(0,(int) mContext.getResources().getDimension(R.dimen.divider_margin),0,(int) mContext.getResources().getDimension(R.dimen.divider_margin));
                 }
 
 
-                dividerParams.setMargins((int) mContext.getResources().getDimension(R.dimen.divider_margin),0,(int) mContext.getResources().getDimension(R.dimen.divider_margin),0);
                 divider.setLayoutParams(dividerParams);
                 divider.setBackgroundColor(ContextCompat.getColor(mContext, R.color.divider_color));
 
