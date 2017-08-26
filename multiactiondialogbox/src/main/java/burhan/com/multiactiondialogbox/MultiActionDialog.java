@@ -102,24 +102,30 @@ public class MultiActionDialog extends PopupWindow
 
             dialogLayout.addView(itemLayout);
 
+
             if(i != dialogItems.size() -1)
             {
                 View divider = new View(mContext);
 
+
+                LinearLayout.LayoutParams dividerParams;
                 if(orientation == HORIZONTAL_ORIENTATION)
                 {
-                    divider.setLayoutParams
-                            (new LinearLayout.LayoutParams(
-                                    (int) mContext.getResources().getDimension(R.dimen.divider_width),LinearLayout.LayoutParams.MATCH_PARENT));
+                    dividerParams = new LinearLayout.LayoutParams(
+                            (int) mContext.getResources().getDimension(R.dimen.divider_width),LinearLayout.LayoutParams.MATCH_PARENT);
+
                 }
                 else
                 {
-                    divider.setLayoutParams
-                            (new LinearLayout.LayoutParams
-                                    (LinearLayout.LayoutParams.MATCH_PARENT, (int) mContext.getResources().getDimension(R.dimen.divider_width)));
+                    dividerParams = new LinearLayout.LayoutParams
+                            (LinearLayout.LayoutParams.MATCH_PARENT, (int) mContext.getResources().getDimension(R.dimen.divider_width));
                 }
 
+
+                dividerParams.setMargins((int) mContext.getResources().getDimension(R.dimen.divider_margin),0,(int) mContext.getResources().getDimension(R.dimen.divider_margin),0);
+                divider.setLayoutParams(dividerParams);
                 divider.setBackgroundColor(ContextCompat.getColor(mContext, R.color.divider_color));
+
 
                 dialogLayout.addView(divider);
             }
