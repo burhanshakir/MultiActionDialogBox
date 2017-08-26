@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import burhan.com.multiactiondialogbox.DialogItems;
 import burhan.com.multiactiondialogbox.MultiActionDialog;
@@ -37,6 +38,27 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view)
             {
                 multiActionDialog.show(MainActivity.this);
+            }
+        });
+
+        multiActionDialog.setOnMultiActionItemClickListener(new MultiActionDialog.OnMultiActionItemClickListener() {
+            @Override
+            public void onItemClick(MultiActionDialog source, int pos, int actionId)
+            {
+                switch (actionId)
+                {
+                    case 1:
+                        Toast.makeText(MainActivity.this, "Football", Toast.LENGTH_SHORT).show();
+                            break;
+                    case 3:
+
+                        Toast.makeText(MainActivity.this, "Badminton", Toast.LENGTH_SHORT).show();
+
+                    case 4:
+
+                        Toast.makeText(MainActivity.this, "Tennis", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }

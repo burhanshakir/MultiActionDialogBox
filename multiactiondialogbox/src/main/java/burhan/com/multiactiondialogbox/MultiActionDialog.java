@@ -1,5 +1,6 @@
 package burhan.com.multiactiondialogbox;
 
+import android.animation.LayoutTransition;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
@@ -28,6 +29,10 @@ public class MultiActionDialog extends PopupWindow
     private Activity mContext;
     private LinearLayout dialogLayout;
 
+    private OnMultiActionItemClickListener mItemClickListener;
+
+
+
 
     public void initialise(DialogItems items, int orientation, View attachableView)
     {
@@ -53,7 +58,11 @@ public class MultiActionDialog extends PopupWindow
         setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
         showAsDropDown(attachableView,attachableView.getWidth()/2, 0);
 
+        setAnimationStyle(R.style.dialogAnimation);
+        setFocusable(true);
+
         setUpButtons();
+
     }
 
     private void setUpButtons()
@@ -74,7 +83,9 @@ public class MultiActionDialog extends PopupWindow
 
         for(i = 0; i< dialogItems.size(); i++ )
         {
-            DialogItem item = dialogItems.get(i);
+            final DialogItem item = dialogItems.get(i);
+
+            final int pos = i;
 
             LinearLayout itemLayout = new LinearLayout(mContext);
             itemLayout.setLayoutParams(new LinearLayout.LayoutParams
@@ -133,19 +144,23 @@ public class MultiActionDialog extends PopupWindow
                 dialogLayout.addView(divider);
             }
 
+            itemLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mItemClickListener.onItemClick(MultiActionDialog.this, pos, item.getId());
+                    dismiss();
+                }
+            });
 
         }
     }
 
-    @Override
-    public void setAnimationStyle(int animationStyle)
-    {
-        animationStyle = R.style.dialogAnimation;
-        super.setAnimationStyle(animationStyle);
+    public void setOnMultiActionItemClickListener(OnMultiActionItemClickListener listener) {
+        mItemClickListener = listener;
     }
 
-    @Override
-    public void setFocusable(boolean focusable) {
-        super.setFocusable(true);
+    public interface OnMultiActionItemClickListener {
+         void onItemClick(MultiActionDialog source, int pos, int actionId);
     }
+
 }
