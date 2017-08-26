@@ -137,4 +137,15 @@ public class MultiActionDialog extends PopupWindow
         }
     }
 
+    @Override
+    public void setAnimationStyle(int animationStyle)
+    {
+        animationStyle = R.style.dialogAnimation;
+        super.setAnimationStyle(animationStyle);
+    }
+
+    @Override
+    public void setFocusable(boolean focusable) {
+        super.setFocusable(true);
+    }
 }
