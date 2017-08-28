@@ -1,10 +1,10 @@
 package burhan.com.multiactiondialogbox;
 
-import android.animation.LayoutTransition;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -54,12 +54,12 @@ public class MultiActionDialog extends PopupWindow
         dialogLayout = (LinearLayout) layout.findViewById(R.id.dialogLayout);
 
         setContentView(layout);
+        setFocusable(true);
+        setAnimationStyle(R.style.dialogAnimation);
+
         setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
         setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
         showAsDropDown(attachableView,attachableView.getWidth()/2, 0);
-
-        setAnimationStyle(R.style.dialogAnimation);
-        setFocusable(true);
 
         setUpButtons();
 
