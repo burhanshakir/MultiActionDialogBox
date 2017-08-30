@@ -59,7 +59,8 @@ public class MultiActionDialog extends PopupWindow
 
         setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
         setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
-        showAsDropDown(attachableView,attachableView.getWidth()/2, 0);
+        showAsDropDown(attachableView,attachableView.getWidth()/2,0, Gravity.TOP);
+
 
         setUpButtons();
 
